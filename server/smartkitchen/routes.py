@@ -23,12 +23,10 @@ from .utils import *
 
 URL_TOKENIZER = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
-# app.static_folder = 'static/*'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-    # return 'Smart Kitchen App [root route] Use the service via App. Thank you.'
+    return 'Smart Kitchen App [root route] Use the service via App. Thank you.'
 
 
 @app.route('/user/new', methods=['POST'])
