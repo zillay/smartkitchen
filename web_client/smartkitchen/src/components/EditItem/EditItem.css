@@ -1,0 +1,103 @@
+.EditItem {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 995;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 250ms linear forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.EditItem .overlay {
+    background: #000;
+    opacity: 0;
+    position: fixed;
+    width: 100%;
+    top: 100%;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    transition: opacity 200ms linear;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.EditItem .overlay.shown {
+    opacity: 0.5;
+    top: 0;
+}
+
+.EditItem .edit-item-ctr {
+    max-height: 100vh;
+    overflow: scroll;
+    position: fixed;
+    top: auto;
+    bottom: auto;
+    right: 16px;
+    left: 16px;
+    padding: 16px 0px;
+    padding-bottom: 0;
+    display: block;
+    /* background: #fff; */
+    background: #deecfc;
+    /* background: lightcyan; */
+    /* background: #f1f5ff; */
+    /* background: lemonchiffon; */
+    /* background: lightcyan; */
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px -4px rgba(0,0,0,0.5);
+    color: #333;
+    text-decoration: none;
+    z-index: 996;
+    transform: translateY(0) translateX(0) translateZ(0) perspective(1px);
+    backface-visibility: hidden;
+    background-color: #ffe5d5;
+    background-image: linear-gradient(180deg, #ffe5d5 1%, #b5ecff 100%);
+    
+}
+
+.EditItem .edit-item-ctr .form {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+
+.EditItem .edit-item-ctr .close {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: #666;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.08ch;
+    padding-top: 22px;
+    padding-bottom: 24px;
+    line-break: 1;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-decoration: none;
+}
+.EditItem .edit-item-ctr .close:focus, 
+.EditItem .edit-item-ctr .close:active {
+    background: #333;
+    color: #fff;
+}

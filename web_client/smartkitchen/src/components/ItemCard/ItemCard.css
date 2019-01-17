@@ -1,0 +1,125 @@
+.ItemCard {
+    padding: 0px 16px;
+    margin-top: 16px
+}
+
+.ItemCard .item-card-ctr {
+    display: block;
+    width: 100%;
+    padding: 16px 0px;
+    padding-bottom: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px -4px rgba(0,0,0,0.5);
+    /* box-shadow: 0px 8px 12px -4px #aaa; */
+    color: #333;
+    text-decoration: none;
+    font-size: 0px;
+}
+
+.ItemCard .item-card-ctr.is-low {
+    /* border: 2px solid crimson; */
+    /* color: crimson; */
+    /* background: lightcoral; */
+    /* color: #fff; */
+}
+.ItemCard .item-card-ctr.is-low .current-percentage,
+.ItemCard .item-card-ctr.is-low .name {
+    color: crimson;
+}
+
+.ItemCard .item-card-ctr span {
+    display: inline-block;
+    letter-spacing: 0.01ch;
+    line-height: 2ch;
+    padding: 0px 16px;
+    font-size: 0px;
+}
+.ItemCard .item-card-ctr .name {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    width: calc(100% - 11ch);
+    vertical-align: top;
+    padding-right: 0px;
+}
+.ItemCard .item-card-ctr .updated-duration {
+    text-align: right;
+    letter-spacing: 0.05ch;
+    font-size: 14px;
+    margin-top: 12px;
+    width: 50%;
+    padding-left: 0px;
+}
+.ItemCard .item-card-ctr .current-percentage {
+    font-size: 18px;
+    text-align: right;
+    width: 10.9ch;
+    vertical-align: top;
+    font-weight: bold;
+    padding-left: 0px;
+}
+.ItemCard .item-card-ctr .slot-number {
+    letter-spacing: 0.05ch;
+    font-size: 14px;
+    margin-top: 12px;
+    text-align: left;
+    padding-right: 0px;
+    width: 50%;
+}
+.ItemCard .item-card-ctr .weights {
+    letter-spacing: 0.05ch;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.5;
+    text-align: left;
+    width: 33%;
+    border-right: 1px solid #ccc;
+}
+.ItemCard .item-card-ctr .weights.left {
+    padding-right: 8px;
+}
+.ItemCard .item-card-ctr .weights.center {
+    width: 34%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.ItemCard .item-card-ctr .weights.right {
+    padding-left: 8px;
+    border-right: none;
+    /* text-align: right; */
+}
+.ItemCard .item-card-ctr .weights b {
+    float: right;
+}
+.ItemCard .item-card-ctr .weights i {
+    float: right;
+    font-style: normal;
+}
+
+.ItemCard .item-card-ctr .edit-btn {
+    display: block;
+    width: 100%;
+    background: transparent;
+    background: aliceblue;
+    color: #666;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.08ch;
+    padding-top: 15px;
+    padding-bottom: 16px;
+    line-break: 1;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-decoration: none;
+}
+.ItemCard .item-card-ctr .edit-btn:focus, 
+.ItemCard .item-card-ctr .edit-btn:active {
+    background: #333;
+    color: #fff;
+}

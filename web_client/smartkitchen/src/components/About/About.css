@@ -1,0 +1,12 @@
+.About {
+    padding-top: 78px;
+    color: #333;
+}
+
+.About .about-ctr {
+    padding: 16px;
+}
+
+.About .about-ctr p {
+    margin-top: 8px;
+}

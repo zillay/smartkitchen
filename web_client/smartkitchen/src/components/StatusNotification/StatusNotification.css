@@ -1,0 +1,61 @@
+.StatusNotification {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    z-index: 999;
+    padding: 24px 16px;
+    box-shadow: 0px -4px 12px -2px rgba(0,0,0,0.5);
+    transition: transform 100ms linear;
+    transform: translateY(calc(100% + 10px)) translateX(0) translateZ(0) perspective(1px);
+    backface-visibility: hidden;
+}
+.StatusNotification.shown {
+    transform: translateY(0) translateX(0) translateZ(0) perspective(1px);
+    backface-visibility: hidden;
+}
+.StatusNotification.error {
+    background-color: crimson;
+    color: #fff;
+}
+.StatusNotification.success {
+    background-color: #333;
+    color: #fff;
+}
+.StatusNotification .msg {
+    vertical-align: middle;
+    display: inline-block;
+    max-width: calc(100% - 38px);
+    /* font-weight: bold; */
+    letter-spacing: 0.04ch;
+    padding-top: 3px;
+}
+
+.StatusNotification .cross-icon {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 4px;
+    position: relative;
+    float: right;
+    vertical-align: middle;
+}
+.StatusNotification .cross-icon .cross-bar {
+    width: calc(100% - 8px);
+    height: 2px;
+    background: #fff;
+    display: block;
+    border-radius: 10000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.StatusNotification .cross-icon .cross-bar:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.StatusNotification .cross-icon .cross-bar:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}

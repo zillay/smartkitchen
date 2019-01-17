@@ -1,0 +1,47 @@
+.UserProfile {
+    padding-top: 78px;
+}
+
+.UserProfile .user-profile-ctr {
+    padding: 16px;
+}
+
+.UserProfile .form .editable {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.UserProfile .form .non-editable {
+    background: transparent;
+    /* background: rgba(250,250,250,0.9); */
+    /* background: #fffde7; */
+    box-shadow: none;
+    color: #333;
+    border: 2px solid rgba(45,45,45,0.1);
+}
+
+.UserProfile .form label {
+    text-align: justify;
+}
+.UserProfile .submit-btn {
+    border-top-left-radius: 0px;    
+    border-top-right-radius: 0px;    
+}
+.UserProfile .edit-btn {
+    line-height: 1.2;
+    font-weight: bold;
+    letter-spacing: 0.1ch;
+    border: 1px solid #333;
+    background: transparent;
+    outline: none;
+    padding: 4px 10px;
+    padding-top: 5px;
+    border-radius: 1000px;
+    font-size: 14px;
+    vertical-align: middle;
+    float: right;
+}
+.UserProfile .edit-btn.active {
+    background: crimson;
+    border: 1px solid crimson;
+    color: #fff;
+}
