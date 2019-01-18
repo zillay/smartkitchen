@@ -8,7 +8,6 @@ const signupUser = (name, email, password, device_puid, callback) => {
         '&email=' + encodeURIComponent(email) + 
         '&password=' + encodeURIComponent(password) +
         '&device_puid=' + encodeURIComponent(device_puid);
-    console.log(queryString);
     
     axios.post(ENDPOINTS.newUser + queryString)
     .then((response) => {

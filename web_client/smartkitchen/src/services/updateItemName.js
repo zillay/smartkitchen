@@ -8,7 +8,6 @@ const updateItemName = (email, password, slot_number, item_new_name, callback) =
         '&password=' + encodeURIComponent(password) +
         '&slot_number=' + encodeURIComponent(slot_number) + 
         '&item_new_name=' + encodeURIComponent(item_new_name);
-    console.log(queryString);
     
     axios.post(ENDPOINTS.editItemName + queryString)
     .then((response) => {

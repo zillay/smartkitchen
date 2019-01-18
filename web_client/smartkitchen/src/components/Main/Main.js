@@ -27,6 +27,7 @@ let INITIAL_STATE = {
         isUserEditPasswordFormActive: false,
         isUserEditPasswordFormSubmitted: false,
         isUserProfileEditable: false,
+        isUserDeleteFormSubmitted: false,
     },
     user: {
         name: null,
@@ -148,6 +149,17 @@ class Main extends Component {
         newState.appControls.isUserEditPasswordFormSubmitted = false;
         this.setState(newState);
     }
+    
+    showLoaderForUserDeleteForm = () => {
+        let newState = this.state;
+        newState.appControls.isUserDeleteFormSubmitted = true;
+        this.setState(newState);
+    }
+    hideLoaderForUserDeleteForm = () => {
+        let newState = this.state;
+        newState.appControls.isUserDeleteFormSubmitted = false;
+        this.setState(newState);
+    }
 
     updateItemNewNameInState = (itemNewName) => {
         let newState = this.state;
@@ -209,7 +221,7 @@ class Main extends Component {
 
     updateUserData = (data, _password=null) => {
         console.log('updateUserData');
-        console.log(data);
+        // console.log(data);
 
         if (data instanceof Error) {
             console.log('ERRORED');
@@ -251,7 +263,7 @@ class Main extends Component {
 
     handleSignup = (data) => {
         console.log('handleSignup');
-        console.log(data);
+        // console.log(data);
 
         if (data instanceof Error) {
             console.log('ERRORED');
@@ -275,7 +287,7 @@ class Main extends Component {
 
     handleItemNameUpdate = (data) => {
         console.log('handleItemNameUpdate');
-        console.log(data);
+        // console.log(data);
 
         if (data instanceof Error) {
             console.log('ERRORED');
@@ -303,7 +315,7 @@ class Main extends Component {
 
     handleItemMinPercentageUpdate = (data) => {
         console.log('handleItemMinPercentageUpdate');
-        console.log(data);
+        // console.log(data);
 
         if (data instanceof Error) {
             console.log('ERRORED');
@@ -331,7 +343,7 @@ class Main extends Component {
     
     handleItemMaxUpdate = (data) => {
         console.log('handleItemMaxUpdate');
-        console.log(data);
+        // console.log(data);
 
         if (data instanceof Error) {
             console.log('ERRORED');
@@ -359,7 +371,7 @@ class Main extends Component {
 
     handleUserNameUpdate = (data) => {
         console.log('handleUserNameUpdate');
-        console.log(data);
+        // console.log(data);
 
         if (data instanceof Error) {
             console.log('ERRORED');
@@ -387,7 +399,7 @@ class Main extends Component {
     
     handleUserPasswordUpdate = (data) => {
         console.log('handleUserPasswordUpdate');
-        console.log(data);
+        // console.log(data);
 
         if (data instanceof Error) {
             console.log('ERRORED');
@@ -416,11 +428,42 @@ class Main extends Component {
             this.hideLoaderForUserEditPasswordForm();
         });
     }
+    
+    handleUserDelete = (data) => {
+        console.log('handleUserDelete');
+        // console.log(data);
+
+        if (data instanceof Error) {
+            console.log('ERRORED');
+            this.showStatusNotification(data.toString(), 'error');
+            this.hideLoaderForUserDeleteForm();
+            return;
+        }
+
+        if (!data.status.is_ok) {
+            this.showStatusNotification(
+                data.status.code + ': ' + data.status.msg,
+                'error'
+            );
+            this.hideLoaderForUserDeleteForm();
+            return;
+        }
+
+        this.hideLoaderForUserDeleteForm();
+        this.showStatusNotification(
+            'Account deleted from the system', 'error'
+        );
+        window.setTimeout(() => {
+            this.logoutUser({preventDefault: ()=>{}})
+        }, 2000);
+    }
 
     logoutUser = (e) => {
         e.preventDefault();
         localStorage.clear();
-        this.setState(INITIAL_STATE);
+        this.setState(INITIAL_STATE, () => {
+            window.location.reload();
+        });
     }
 
     componentDidUpdate() {

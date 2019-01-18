@@ -2,12 +2,12 @@ import axios from 'axios';
 
 import {ENDPOINTS} from '../globals'
 
-const getUserData = (email, password, callback) => {
+const deleteUser = (email, password, callback) => {
     const queryString = 
         '?email=' + encodeURIComponent(email) + 
         '&password=' + encodeURIComponent(password);
     
-    axios.post(ENDPOINTS.userInfo + queryString)
+    axios.post(ENDPOINTS.deleteUser + queryString)
     .then((response) => {
         // console.log(response)
         callback(response.data, password);
@@ -17,4 +17,4 @@ const getUserData = (email, password, callback) => {
     });
 }
 
-export default getUserData;
+export default deleteUser;

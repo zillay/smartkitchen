@@ -133,6 +133,13 @@ const Dashboard = (props) => {
             
             {ItemCards}
 
+            {ItemCards.length === 0 
+                ? <p className="welcome-text" style={{textAlign: 'center'}}>
+                    <b>No Data Found!</b>
+                    <br />
+                    Please Setup and Initialize the Device.
+                </p> : null}
+
             <Route 
                 path="/dashboard/item/edit/:slotNumber"
                 render={({match}) => {

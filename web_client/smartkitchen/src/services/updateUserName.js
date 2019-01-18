@@ -7,7 +7,6 @@ const updateUserName = (email, password, user_new_name, callback) => {
         '?email=' + encodeURIComponent(email) + 
         '&password=' + encodeURIComponent(password) +
         '&user_new_name=' + encodeURIComponent(user_new_name);
-    console.log(queryString);
     
     axios.post(ENDPOINTS.editUserName + queryString)
     .then((response) => {

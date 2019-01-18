@@ -7,7 +7,6 @@ const updateUserPassword = (email, password, new_password, callback) => {
         '?email=' + encodeURIComponent(email) + 
         '&password=' + encodeURIComponent(password) +
         '&new_password=' + encodeURIComponent(new_password);
-    console.log(queryString);
     
     axios.post(ENDPOINTS.editUserPassword + queryString)
     .then((response) => {

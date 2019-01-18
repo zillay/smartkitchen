@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar';
 
 import updateUserName from '../../services/updateUserName';
 import updateUserPassword from '../../services/updateUserPassword';
+import deleteUser from '../../services/deleteUser';
 
 const UserProfile = (props) => {
     const _main = props._main;
@@ -18,6 +19,8 @@ const UserProfile = (props) => {
         _main.state.appControls.isUserEditPasswordFormSubmitted;
     const isUserProfileEditable = 
         !_main.state.appControls.isUserProfileEditable;
+    const isUserDeleteFormSubmitted = 
+        _main.state.appControls.isUserDeleteFormSubmitted;
 
     if (_main.state.userEdit.userNewName === null ) {
         let newState = _main.state;
@@ -60,12 +63,22 @@ const UserProfile = (props) => {
         
     const onPasswordEditFormSubmit = (e) => {
         e.preventDefault();
-        _main.showLoaderForUserEditPasswordForm();
+        _main.showLoaderForUserDeleteForm();
         updateUserPassword(
             _main.state.user.email,
             _main.state.user.password,
             _main.state.userEdit.userNewPassword,
             _main.handleUserPasswordUpdate
+        );
+    }
+   
+    const onDeleteUser = (e) => {
+        e.preventDefault();
+        _main.showLoaderForUserDeleteForm();
+        deleteUser(
+            _main.state.user.email,
+            _main.state.user.password,
+            _main.handleUserDelete
         );
     }
 
@@ -165,6 +178,23 @@ const UserProfile = (props) => {
                         placeholder="Enter Device ID Here ..." required 
                     />
                 </label>
+            </form>
+            <br />
+            <hr />
+            <br />
+            <form className="form" onSubmit={onDeleteUser}>
+                <button 
+                    type="submit"
+                    style={{background: 'crimson'}}
+                    disabled={isUserDeleteFormSubmitted}
+                >
+                    &emsp;
+                    {isUserDeleteFormSubmitted 
+                        ? <div className="loader in-btn"></div> 
+                        : "DELETE ACCOUNT"
+                    }
+                    &emsp;
+                </button>
             </form>
         </div>
     </div>

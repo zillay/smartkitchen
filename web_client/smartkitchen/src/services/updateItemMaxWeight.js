@@ -7,7 +7,6 @@ const updateItemMaxPercentage = (email, password, slot_number, callback) => {
         '?email=' + encodeURIComponent(email) + 
         '&password=' + encodeURIComponent(password) +
         '&slot_number=' + encodeURIComponent(slot_number);
-    console.log(queryString);
     
     axios.post(ENDPOINTS.editItemMaxWeight + queryString)
     .then((response) => {

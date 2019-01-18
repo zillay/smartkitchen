@@ -8,7 +8,6 @@ const updateItemMinPercentage = (email, password, slot_number, min_weight_percen
         '&password=' + encodeURIComponent(password) +
         '&slot_number=' + encodeURIComponent(slot_number) + 
         '&min_weight_percent=' + encodeURIComponent(min_weight_percent);
-    console.log(queryString);
     
     axios.post(ENDPOINTS.editItemMinWeight + queryString)
     .then((response) => {

@@ -43,7 +43,7 @@
 
 .EditItem .edit-item-ctr {
     max-height: 100vh;
-    overflow: scroll;
+    overflow: auto;
     position: fixed;
     top: auto;
     bottom: auto;

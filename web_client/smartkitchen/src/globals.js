@@ -1,7 +1,8 @@
-const HOSTNAME = 'http://128.199.111.126';
+const HOSTNAME = 'http://localhost:5000';
 
 const ENDPOINTS = {
     newUser: HOSTNAME + '/user/new',
+    deleteUser: HOSTNAME + '/user/delete',
     userInfo: HOSTNAME + '/user/info',
     editUserName: HOSTNAME + '/user/edit/name',
     editUserPassword: HOSTNAME + '/user/edit/password',
