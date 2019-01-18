@@ -9,8 +9,13 @@
 
 body {
     width: 100%;
+    margin: auto !important;
     /* transform: translateY(0) translateX(0) translateZ(0) perspective(1px);
     backface-visibility: hidden; */
+}
+
+button {
+    cursor: pointer;
 }
 
 .card {
