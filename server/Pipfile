@@ -16,6 +16,7 @@ validate-email = "*"
 itsdangerous = "*"
 passlib = "*"
 email-validator = "*"
+gevent = "*"
 
 [requires]
 python_version = "3.6"

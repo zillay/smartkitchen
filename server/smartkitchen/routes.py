@@ -2,7 +2,6 @@ from flask import (
     request, 
     url_for, 
     jsonify, 
-    render_template,
 )
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
@@ -109,6 +108,7 @@ def user_new():
         URL_TOKENIZER.dumps(email, salt=app.config['SECRET_KEY'])
 
     # add user to db
+    new_user = None
     try:    
         new_user = User(name=name, email=email, 
                         password=sha256_crypt.hash(password),
@@ -144,6 +144,11 @@ def user_new():
                     <a href="{}" target="_blank">{}</a>
                     to block any future emails.
                 </p>
+                <br/>
+                <p><small>
+                    *** This is a computer generated Email. 
+                     Reply to this Email will not be entertained. Thank You! ***
+                </small></p>
             """.format(url_for('confirm_email', 
                             token=email_verification_token, _external=True),
                     url_for('confirm_email', 
@@ -153,7 +158,14 @@ def user_new():
                     'Click Here'),
             sender=app.config['MAIL_USERNAME'],
             recipients=[email])
-    except:
+    except Exception as e:
+        print(e)
+        try:
+            if new_user is not None:
+                db.session.delete(new_user)
+                db.session.commit()
+        except:
+            pass
         return jsonify({
             'status': ERROR['mailing_error']
         })
