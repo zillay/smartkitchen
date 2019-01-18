@@ -7,7 +7,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 MAIL_SERVER ='smtp.gmail.com'
 MAIL_PORT = 465
-MAIL_USERNAME = 'hello.smartkitchen@gmail.com' # hide it in prod
-MAIL_PASSWORD = 'smartkitchen###' # hide it in prod
+MAIL_USERNAME = 'hello.smartkitchen@gmail.com'
+MAIL_PASSWORD = '<passwordhere>'
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
