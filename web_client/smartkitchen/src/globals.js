@@ -1,4 +1,4 @@
-const HOSTNAME = 'http://localhost:5000';
+const HOSTNAME = 'http://localhost';
 
 const ENDPOINTS = {
     newUser: HOSTNAME + '/user/new',

@@ -126,7 +126,7 @@ const Dashboard = (props) => {
 
     return (
         <div className="Dashboard">
-            <Navbar _main={_main} />
+            {/* <Navbar _main={_main} /> */}
             <p className="welcome-text">
                 Welcome, <b>{_main.state.user.name}</b> :-)
             </p>

@@ -84,7 +84,7 @@ const UserProfile = (props) => {
 
     return (
     <div className="UserProfile">
-        <Navbar _main={_main} />
+        {/* <Navbar _main={_main} /> */}
         <div className="user-profile-ctr">
             <h3>
                 {_main.state.user.name}'s Profile 

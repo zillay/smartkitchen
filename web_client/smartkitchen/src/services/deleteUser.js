@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ENDPOINTS} from '../globals'
+import {ENDPOINTS} from '../globals';
 
 const deleteUser = (email, password, callback) => {
     const queryString = 

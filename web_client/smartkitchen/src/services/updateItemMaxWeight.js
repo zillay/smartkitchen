@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ENDPOINTS} from '../globals'
+import {ENDPOINTS} from '../globals';
 
 const updateItemMaxPercentage = (email, password, slot_number, callback) => {
     const queryString = 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ENDPOINTS} from '../globals'
+import {ENDPOINTS} from '../globals';
 
 const signupUser = (name, email, password, device_puid, callback) => {
     const queryString = 

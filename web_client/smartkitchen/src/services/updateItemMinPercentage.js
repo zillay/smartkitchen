@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ENDPOINTS} from '../globals'
+import {ENDPOINTS} from '../globals';
 
 const updateItemMinPercentage = (email, password, slot_number, min_weight_percent, callback) => {
     const queryString = 

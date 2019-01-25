@@ -8,7 +8,7 @@ const About = (props) => {
     
     return (
     <div className="About">
-        <Navbar _main={_main} />
+        {/* <Navbar _main={_main} /> */}
         <div className="about-ctr">
             <h3>About Project</h3>
             <p>

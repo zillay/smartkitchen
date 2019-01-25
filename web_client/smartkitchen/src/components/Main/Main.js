@@ -3,6 +3,7 @@ import './Main.css';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 
 // components
+import Navbar from '../Navbar/Navbar';
 import Dashboard from '../Dashboard/Dashboard';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
@@ -13,6 +14,9 @@ import About from '../About/About';
 // services
 import getUserData from '../../services/getUserData';
 import { makeMinPercentage } from '../../utils';
+
+// others
+import {HOSTNAME} from '../../globals';
 
 let INITIAL_STATE = {
     appControls: {
@@ -460,8 +464,9 @@ class Main extends Component {
 
     logoutUser = (e) => {
         e.preventDefault();
-        localStorage.clear();
         this.setState(INITIAL_STATE, () => {
+            localStorage.clear();
+            window.location.hash = '#/';
             window.location.reload();
         });
     }
@@ -474,6 +479,8 @@ class Main extends Component {
     render() {
         return (
             <div className="Main">
+                <Navbar _main={this} />
+
                 <Route exact path="/" 
                     render={() => (this.state.user.isLoggedIn 
                         ? <Redirect to="/dashboard" />
@@ -510,9 +517,8 @@ class Main extends Component {
                     )} 
                 />
                 <Route exact path="/about" 
-                    render={() => (this.state.user.isLoggedIn 
-                        ? <About _main={this} />
-                        : <Redirect to="/" />
+                    render={() => (
+                        <About _main={this} />
                     )} 
                 />
                 <StatusNotification _main={this} />

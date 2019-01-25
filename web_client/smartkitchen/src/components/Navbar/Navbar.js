@@ -48,12 +48,16 @@ const Navbar = (props) => {
                     </>)
                     : (<>
                         <li>
-                            <Link className="menu-link" to="/login">
+                            <Link className="menu-link" to="/login"
+                                onClick={_main.toggleSideMenu}
+                            >
                                 Login
                             </Link>
                         </li>
                         <li>
-                            <Link className="menu-link" to="/signup">
+                            <Link className="menu-link" to="/signup"
+                                onClick={_main.toggleSideMenu}
+                            >
                                 Sign Up
                             </Link>
                         </li>
@@ -68,13 +72,15 @@ const Navbar = (props) => {
                             About
                         </Link>
                     </li>
-                    <li>
+                    {isLoggedIn
+                    ? <li>
                         <Link className="menu-link" to="/logout" 
                             onClick={_main.logoutUser}
                         >
                             Logout
                         </Link>
                     </li>
+                    : null}
                 </ul>
             </div>
         </div>

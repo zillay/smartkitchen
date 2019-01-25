@@ -756,8 +756,6 @@ def item_update():
             if item is not None:
                 item.current_weight = float(slots_data[slot]['cw'])
                 item.last_updated = datetime.datetime.utcnow()
-                # if item.current_weight > item.max_weight:
-                #     item.max_weight = item.current_weight
                 db.session.commit()
             else:
                 item = Item(name='Slot#' + slot,
@@ -770,6 +768,22 @@ def item_update():
                 db.session.commit()
         except Exception as e:
             print(e)
+    
+    # remove the slots not being updated from db
+    try:
+        items = Item.query.filter_by(device_uid=device.uid).all()
+        if items is not None and len(items) > 0:
+            to_be_del_items_uid = []
+            for item in items:
+                if str(item.slot_number) not in slots_data:
+                    to_be_del_items_uid.append(item.uid)
+            for uid in to_be_del_items_uid:
+                item = Item.query.filter_by(uid=uid).first()
+                if item is not None:
+                    db.session.delete(item)
+                    db.session.commit()
+    except Exception as e:
+        print(e)
 
     # notify client of updation
     return jsonify({

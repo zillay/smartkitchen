@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ENDPOINTS} from '../globals'
+import {ENDPOINTS} from '../globals';
 
 const updateUserPassword = (email, password, new_password, callback) => {
     const queryString = 
