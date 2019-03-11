@@ -77,8 +77,8 @@ while True:
             print binary_string + " " + np_arr8_string
         
         # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-        val = hx.get_weight(5)
-        # val = hx.read_long()
+        # val = hx.get_weight(5)
+        val = hx.read_long()
         # print val
 
         host = "smartkitchen.pythonanywhere.com"
@@ -96,17 +96,18 @@ while True:
                     device_puid=device_puid,
                     slots_data=slots_data
                 )
+
+            if r.status_code != 200:
+                print "Error: \tBad response from server."
+                print "HTTP_CODE: \t" + str(r.status_code)
+            else:
+                print "Success: \t" + r.json()["status"]["msg"]
+                print "HTTP_CODE: \t" + str(r.status_code)
+            
         except Exception as e:
             print e
             
-        if r.status_code != 200:
-            print "Error: \tBad response from server."
-            print "Resp_Code: \t" + str(r.status_code)
-        else:
-            print "Success: \t" + r.json()["status"]["msg"]
-            print "Resp_Code: \t" + str(r.status_code)
-        
-        print "----------"
+        print "-------------------------"
 
         # To get weight from both channels (if you have load cells hooked up 
         # to both channel A and B), do something like this
