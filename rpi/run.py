@@ -100,11 +100,11 @@ while True:
             print e
             
         if r.status_code != 200:
-            print "Error: Bad response from server."
-            print "     " + str(r.status_code)
+            print "Error: \tBad response from server."
+            print "Resp_Code: \t" + str(r.status_code)
         else:
-            print "Success: " + r.json()["msg"]
-            print "     " + str(r.status_code)
+            print "Success: \t" + r.json()["msg"]
+            print "Resp_Code: \t" + str(r.status_code)
         
         print "----------"
 
