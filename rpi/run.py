@@ -100,11 +100,13 @@ while True:
             print e
             
         if r.status_code != 200:
-            print "Err: Bad response from server."
+            print "Error: Bad response from server."
             print "     " + str(r.status_code)
         else:
-            print "Ok: " + r.json()
+            print "Success: " + r.json()["msg"]
             print "     " + str(r.status_code)
+        
+        print "----------"
 
         # To get weight from both channels (if you have load cells hooked up 
         # to both channel A and B), do something like this
