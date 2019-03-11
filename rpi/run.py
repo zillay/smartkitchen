@@ -103,7 +103,7 @@ while True:
             print "Error: \tBad response from server."
             print "Resp_Code: \t" + str(r.status_code)
         else:
-            print "Success: \t" + r.json()["msg"]
+            print "Success: \t" + r.json()["status"]["msg"]
             print "Resp_Code: \t" + str(r.status_code)
         
         print "----------"
