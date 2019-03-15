@@ -12,12 +12,12 @@ def make_payload_querystring(payload_dict):
 
 def send_slots_data_to_server(host, port, device_puid, slots_data):
     r = requests.post(
-        ('http://{host}:{port}/item/update' + 
+        ('http://{host}:{port}/item/update' +
          '?device_puid={device_puid}&slots_data={slots_data}')
         .format(
-            host=host, 
-            port=port, 
-            device_puid=device_puid, 
+            host=host,
+            port=port,
+            device_puid=device_puid,
             slots_data=slots_data
         )
     )
@@ -36,9 +36,10 @@ def cleanAndExit():
 
     if not EMULATE_HX711:
         GPIO.cleanup()
-        
+
     print "Bye!"
     sys.exit()
+
 
 hx1 = HX711(5, 6)
 hx2 = HX711(27, 17)
@@ -54,6 +55,7 @@ hx2 = HX711(27, 17)
 hx1.set_reading_format("MSB", "MSB")
 hx2.set_reading_format("MSB", "MSB")
 
+
 # HOW TO CALCULATE THE REFFERENCE UNIT
 # To set the reference unit to 1. Put 1kg on your sensor or anything you have and know exactly how much it weights.
 # In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
@@ -66,7 +68,7 @@ hx2.set_reference_unit(1)
 OFFSET_1 = 96500
 REFERENCE_UNIT_1 = 250
 
-OFFSET_2 = 31500
+OFFSET_2 = 31000
 REFERENCE_UNIT_2 = -260
 
 
@@ -75,10 +77,6 @@ hx2.reset()
 #hx1.tare()
 #hx2.tare()
 
-
-# to use both channels, you'll need to tare them both
-#hx.tare_A()
-#hx.tare_B()
 
 while True:
     try:
@@ -89,8 +87,8 @@ while True:
             np_arr8_string = hx.get_np_arr8_string()
             binary_string = hx.get_binary_string()
             print binary_string + " " + np_arr8_string
-        
-        # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
+
+
 	w1 = hx1.get_weight()
 	print w1
 	w1 = (w1 - OFFSET_1) / REFERENCE_UNIT_1
@@ -108,7 +106,6 @@ while True:
 	print w2
 	w2 = max(0, int(w2))
 	print str(w2) + " g"
-
 
 
 
@@ -141,14 +138,12 @@ while True:
             
         print "-------------------------"
 
-        # To get weight from both channels (if you have load cells hooked up 
+        # To get weight from both channels (if you have load cells hooked up
         # to both channel A and B), do something like this
         #val_A = hx.get_weight_A(5)
         #val_B = hx.get_weight_B(5)
         #print "A: %s  B: %s" % ( val_A, val_B )
 
-#        hx.power_down()
-#        hx.power_up()
         hx1.reset()
         hx2.reset()
         time.sleep(0.2)
