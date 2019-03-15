@@ -40,7 +40,9 @@ def cleanAndExit():
     print "Bye!"
     sys.exit()
 
-hx = HX711(5, 6)
+hx1 = HX711(5, 6)
+hx2 = HX711(27, 17)
+
 
 # I've found out that, for some reason, the order of the bytes is not always the same between versions of python, numpy and the hx711 itself.
 # Still need to figure out why does it change.
@@ -49,17 +51,29 @@ hx = HX711(5, 6)
 # The first parameter is the order in which the bytes are used to build the "long" value.
 # The second paramter is the order of the bits inside each byte.
 # According to the HX711 Datasheet, the second parameter is MSB so you shouldn't need to modify it.
-hx.set_reading_format("MSB", "MSB")
+hx1.set_reading_format("MSB", "MSB")
+hx2.set_reading_format("MSB", "MSB")
 
 # HOW TO CALCULATE THE REFFERENCE UNIT
 # To set the reference unit to 1. Put 1kg on your sensor or anything you have and know exactly how much it weights.
 # In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
 # and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
 # If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
-hx.set_reference_unit(1)
+hx1.set_reference_unit(1)
+hx2.set_reference_unit(1)
 
-hx.reset()
-#hx.tare()
+
+OFFSET_1 = 96500
+REFERENCE_UNIT_1 = 250
+
+OFFSET_2 = 31500
+REFERENCE_UNIT_2 = -260
+
+
+hx1.reset()
+hx2.reset()
+#hx1.tare()
+#hx2.tare()
 
 
 # to use both channels, you'll need to tare them both
@@ -77,18 +91,35 @@ while True:
             print binary_string + " " + np_arr8_string
         
         # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-        # val = hx.get_weight(5)
-        val = hx.read_long()
-        # print val
+	w1 = hx1.get_weight()
+	print w1
+	w1 = (w1 - OFFSET_1) / REFERENCE_UNIT_1
+	print w1
+	w1 = max(0, int(w1))
+	print str(w1) + " g"
+
+
+	print "----"
+
+
+	w2 = hx2.get_weight()
+	print w2
+	w2 = (w2 - OFFSET_2) / REFERENCE_UNIT_2
+	print w2
+	w2 = max(0, int(w2))
+	print str(w2) + " g"
+
+
+
 
         host = "smartkitchen.pythonanywhere.com"
         port = "80"
         device_puid = "d101"
-        slots_dict = {"1": {"cw": val}}
+        slots_dict = {"1": {"cw": w1}, "2": {"cw": w2}}
         slots_data = make_payload_querystring(slots_dict)
-        print slots_dict
+        # print slots_dict
         # print slots_data
-
+	
         try:
             r = send_slots_data_to_server(
                     host=host,
@@ -106,6 +137,7 @@ while True:
             
         except Exception as e:
             print e
+	
             
         print "-------------------------"
 
@@ -115,10 +147,11 @@ while True:
         #val_B = hx.get_weight_B(5)
         #print "A: %s  B: %s" % ( val_A, val_B )
 
-        # hx.power_down()
-        # hx.power_up()
-        hx.reset()
-        time.sleep(5)
+#        hx.power_down()
+#        hx.power_up()
+        hx1.reset()
+        hx2.reset()
+        time.sleep(0.2)
 
     except (KeyboardInterrupt, SystemExit):
         cleanAndExit()
