@@ -65,11 +65,11 @@ hx1.set_reference_unit(1)
 hx2.set_reference_unit(1)
 
 
-OFFSET_1 = 96500
+OFFSET_1 = 97000
 REFERENCE_UNIT_1 = 250
 
-OFFSET_2 = 31000
-REFERENCE_UNIT_2 = -260
+OFFSET_2 = 30700
+REFERENCE_UNIT_2 = -245
 
 
 hx1.reset()
@@ -89,9 +89,13 @@ while True:
             print binary_string + " " + np_arr8_string
 
 
-	w1 = hx1.get_weight()
+	print "[SLOT 1]"
+
+	w1 = hx1.get_weight(5)
 	print w1
-	w1 = (w1 - OFFSET_1) / REFERENCE_UNIT_1
+	w1 = w1 - OFFSET_1
+	print w1
+	w1 = w1 / REFERENCE_UNIT_1
 	print w1
 	w1 = max(0, int(w1))
 	print str(w1) + " g"
@@ -100,9 +104,13 @@ while True:
 	print "----"
 
 
-	w2 = hx2.get_weight()
+	print "[SLOT 2]"
+
+	w2 = hx2.get_weight(5)
 	print w2
-	w2 = (w2 - OFFSET_2) / REFERENCE_UNIT_2
+	w2 = w2 - OFFSET_2
+	print w2
+	w2 = w2 / REFERENCE_UNIT_2
 	print w2
 	w2 = max(0, int(w2))
 	print str(w2) + " g"
