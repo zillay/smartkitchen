@@ -61,15 +61,13 @@ hx2.set_reading_format("MSB", "MSB")
 # In this case, 92 is 1 gram because, with 1 as a reference unit I got numbers near 0 without any weight
 # and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
 # If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
-hx1.set_reference_unit(1)
-hx2.set_reference_unit(1)
+hx1.set_reference_unit(240)
+hx2.set_reference_unit(-238)
 
 
-OFFSET_1 = 97000
-REFERENCE_UNIT_1 = 250
+OFFSET_1 = 410
 
-OFFSET_2 = 30700
-REFERENCE_UNIT_2 = -245
+OFFSET_2 = -125
 
 
 hx1.reset()
@@ -91,11 +89,7 @@ while True:
 
 	print "[SLOT 1]"
 
-	w1 = hx1.get_weight(5)
-	print w1
-	w1 = w1 - OFFSET_1
-	print w1
-	w1 = w1 / REFERENCE_UNIT_1
+	w1 = hx1.get_weight(5) - OFFSET_1
 	print w1
 	w1 = max(0, int(w1))
 	print str(w1) + " g"
@@ -106,15 +100,10 @@ while True:
 
 	print "[SLOT 2]"
 
-	w2 = hx2.get_weight(5)
-	print w2
-	w2 = w2 - OFFSET_2
-	print w2
-	w2 = w2 / REFERENCE_UNIT_2
+	w2 = hx2.get_weight(5) - OFFSET_2
 	print w2
 	w2 = max(0, int(w2))
 	print str(w2) + " g"
-
 
 
         host = "smartkitchen.pythonanywhere.com"
